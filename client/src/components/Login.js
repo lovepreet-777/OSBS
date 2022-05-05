@@ -17,7 +17,9 @@ const Login = () => {
       const url = "http://localhost:8080/api/auth";
       const res = await axios.post(url, data);
       console.log(res);
-      localStorage.setItem("token", res.data);
+      localStorage.setItem("token", res.data.data);
+      localStorage.setItem("user", res.data.user.firstName);
+      var name = localStorage.getItem("user");
       window.location = "/Bank";
     } catch (error) {
       if (
@@ -54,6 +56,7 @@ const Login = () => {
                         type="email"
                         id="typeEmailX"
                         className="form-control form-control-lg"
+                        autoComplete="off"
                         placeholder="UserId"
                       />
                       {/* <label className="form-label" htmlFor="typeEmailX">
@@ -67,6 +70,7 @@ const Login = () => {
                         type="password"
                         id="typePasswordX"
                         name="password"
+                        autoComplete="off"
                         className="form-control form-control-lg"
                         placeholder="Password"
                       />

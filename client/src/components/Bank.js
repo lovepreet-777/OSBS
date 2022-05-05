@@ -12,7 +12,10 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">State Bank Of India</h5> */}
           </div>
-          <a href="https://www.google.com/maps/search/sbi+atms+near+me">
+          <a
+            href="https://www.google.com/maps/search/sbi+atms+near+me"
+            target="_blank"
+          >
             <button type="button" className="button">
               Explore
             </button>
@@ -27,7 +30,10 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">HDFC Bank</h5> */}
           </div>
-          <a href="https://www.google.com/maps/search/hdfc+atms+near+me">
+          <a
+            href="https://www.google.com/maps/search/hdfc+atms+near+me"
+            target="_blank"
+          >
             <button type="button" className="button">
               Explore
             </button>
@@ -45,7 +51,10 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">Axis Bank</h5> */}
           </div>
-          <a href="https://www.google.com/maps/search/axis+atms+near+me">
+          <a
+            href="https://www.google.com/maps/search/axis+atms+near+me"
+            target="_blank"
+          >
             <button type="button" className="button">
               Explore
             </button>
@@ -60,7 +69,10 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">Kotak Mahindra Bank</h5> */}
           </div>
-          <a href="https://www.google.com/maps/search/kotak+mahindra+atms+near+me">
+          <a
+            href="https://www.google.com/maps/search/kotak+mahindra+atms+near+me"
+            target="_blank"
+          >
             <button type="button" className="button">
               Explore
             </button>

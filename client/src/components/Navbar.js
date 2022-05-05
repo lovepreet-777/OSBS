@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+var name = localStorage.getItem("user");
 const Navbar = () => {
   return (
     <nav
@@ -16,24 +17,24 @@ const Navbar = () => {
           className="navLink mx-2"
           to="/Login"
         >
-          Login
+          Logout
         </NavLink>
-        <NavLink
+        {/* <NavLink
           exact
           activeClassName="navActive"
           className="navLink mx-2"
           to="/"
         >
           Home
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           exact
           activeClassName="navActive"
           className="navLink mx-2"
           to="/Bank"
         >
           Bank
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           exact
@@ -43,6 +44,14 @@ const Navbar = () => {
         >
           Transactions
         </NavLink>
+        {/* <NavLink
+          exact
+          activeClassName="navActive"
+          className="navLink mx-2"
+          to="/UserDetails"
+        >
+          {name}
+        </NavLink> */}
       </div>
     </nav>
   );

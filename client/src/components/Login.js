@@ -1,6 +1,35 @@
 import "../App.css";
+import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+
 const Login = () => {
+  const [data, setData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+
+  console.log(data);
+  const handleChange = ({ currentTarget: input }) => {
+    setData({ ...data, [input.name]: input.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = "http://localhost:8080/api/auth";
+      const res = await axios.post(url, data);
+      console.log(res);
+      localStorage.setItem("token", res.data);
+      window.location = "/Bank";
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+      }
+    }
+  };
+
   return (
     <div className="Login">
       <section className="vh-100 Login">
@@ -20,6 +49,8 @@ const Login = () => {
 
                     <div className="form-outline form-white mb-4">
                       <input
+                        onChange={handleChange}
+                        name="email"
                         type="email"
                         id="typeEmailX"
                         className="form-control form-control-lg"
@@ -32,8 +63,10 @@ const Login = () => {
 
                     <div className="form-outline form-white mb-4">
                       <input
+                        onChange={handleChange}
                         type="password"
                         id="typePasswordX"
+                        name="password"
                         className="form-control form-control-lg"
                         placeholder="Password"
                       />
@@ -51,6 +84,7 @@ const Login = () => {
                     <button
                       className="btn btn-outline-light btn-lg px-5"
                       type="submit"
+                      onClick={handleSubmit}
                     >
                       Login
                     </button>

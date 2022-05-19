@@ -34,6 +34,41 @@ router.post("/", async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
+router.post("/Bank/Login", async (req, res) => {
+  try {
+    const { error } = validate(req.body);
+    if (error) {
+      return res.status(400).send({ message: error.details[0].message });
+    }
+
+    const Bankuser = await BankUser.findOne({ email: req.body.email }); //account no.
+
+    if (!Bankuser) {
+      return res.status(401).send({ message: "Invalid Email or Password" });
+    }
+
+    const validPassword = req.body.password === Bankuser.password;
+    // const validPassword = await bcrypt.compare(
+    //   req.body.password,
+    //   user.password
+    // );
+    if (!validPassword) {
+      return res.status(401).send({ message: "Invalid Email or Password" });
+    }
+    const token = Bankuser.generateAuthToken();
+    console.log(token);
+    res
+      .status(200)
+      .send({
+        data: token,
+        message: "logged in successfully",
+        Bankuser: Bankuser,
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
 
 const validate = (data) => {
   const schema = Joi.object({

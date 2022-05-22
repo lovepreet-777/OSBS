@@ -236,25 +236,28 @@ footer {
 .card-deck-class {
   display: flex;
   justify-content: space-between;
-  height: 250px;
+  flex-wrap: wrap;
   background-color: #0f2537;
 }
 .card-class {
   margin: 8px;
+  min-height: 240px;
+  padding: 12px;
   width: 40%;
   border: 3px solid #9d9db6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .card-img,
 .card-img-top,
 .card-img-bottom {
   width: 176px;
   height: 103px;
-  position: relative;
-  left: 90px;
+  object-fit: contain;
 }
 .button {
   display: inline-block;
-  margin: 0 0.3em 0.3em 0;
   padding: 0.3em 1.2em;
   border-radius: 8px;
   box-sizing: border-box;
@@ -262,11 +265,7 @@ footer {
   font-weight: 80px;
   color: #090404;
   background-color: #9d9db6;
-  text-align: center;
   transition: all 0.2s;
-  position: relative;
-  left: 128px;
-  top: 22px;
 }
 .button2 {
   justify-content: center;
@@ -293,4 +292,16 @@ footer {
   text-decoration: none;
   background-color: #20374c;
   border: 2px solid #aba5a571;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.acc-registration_wrapper{
+  width: 100%;
+  padding: 64px;
+  background-color: #20374c;
 }

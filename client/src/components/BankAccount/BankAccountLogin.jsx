@@ -10,7 +10,26 @@ export default function BankAccountLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    try {
+      const url = "http://localhost:8080/api/Bankuser/Login";
+      const res = await axios.post(url, data);
+      console.log(res);
+      localStorage.setItem("token", res.data.data);
+      // localStorage.setItem("user", res.data.user.firstName);
+      // navigate("/Bank", {
+      //   replace: true,
+      // }
+      // );
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
+        alert(error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -46,8 +65,8 @@ export default function BankAccountLogin() {
             />
           </div>
 
-          <button className="btn btn-outline-light btn-lg px-5" type="submit">
-            Register
+          <button onClick={handleSubmit} className="btn btn-outline-light btn-lg px-5" type="submit">
+            Login
           </button>
           <div>
             <p className="mb-2" style={{ color: "white" }}>

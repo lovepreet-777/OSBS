@@ -17,8 +17,8 @@ app.use(cors());
 //routes
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/Bankuser/create", BankuserRoutes);
-app.use("/api/Bankuser/Login", BankuserRoutes);
+// app.use("/api/Bankuser/create", BankuserRoutes);
+app.use("/api/Bankuser", BankuserRoutes);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

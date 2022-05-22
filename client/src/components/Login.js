@@ -1,11 +1,12 @@
 import "../App.css";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   console.log(data);
   const handleChange = ({ currentTarget: input }) => {
@@ -19,8 +20,9 @@ const Login = () => {
       console.log(res);
       localStorage.setItem("token", res.data.data);
       localStorage.setItem("user", res.data.user.firstName);
-      var name = localStorage.getItem("user");
-      window.location = "/Bank";
+      navigate("/Bank", {
+        replace: true,
+      });
     } catch (error) {
       if (
         error.response &&
@@ -58,7 +60,7 @@ const Login = () => {
                         id="typeEmailX"
                         className="form-control form-control-lg"
                         autoComplete="off"
-                        placeholder="UserId"
+                        placeholder="Email"
                       />
                       {/* <label className="form-label" htmlFor="typeEmailX">
                         Email

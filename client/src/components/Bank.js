@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable react/jsx-no-target-blank */
+import { Link } from "react-router-dom";
 import "../App.css";
 const Bank = () => {
   return (
@@ -12,14 +15,11 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">State Bank Of India</h5> */}
           </div>
-          <a
-            href="https://www.google.com/maps/search/sbi+atms+near+me"
-            target="_blank"
-          >
+          <Link to="/account/login">
             <button type="button" className="button">
               Explore
             </button>
-          </a>
+          </Link>
         </div>
         <div className="card-class">
           <img
@@ -30,14 +30,11 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">HDFC Bank</h5> */}
           </div>
-          <a
-            href="https://www.google.com/maps/search/hdfc+atms+near+me"
-            target="_blank"
-          >
+          <Link to="/account/login">
             <button type="button" className="button">
               Explore
             </button>
-          </a>
+          </Link>
         </div>
         <div className="card-class">
           <img
@@ -51,14 +48,11 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">Axis Bank</h5> */}
           </div>
-          <a
-            href="https://www.google.com/maps/search/axis+atms+near+me"
-            target="_blank"
-          >
+          <Link to="/account/login">
             <button type="button" className="button">
               Explore
             </button>
-          </a>
+          </Link>
         </div>
         <div className="card-class">
           <img
@@ -69,14 +63,11 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">Kotak Mahindra Bank</h5> */}
           </div>
-          <a
-            href="https://www.google.com/maps/search/kotak+mahindra+atms+near+me"
-            target="_blank"
-          >
+          <Link to="/account/login">
             <button type="button" className="button">
               Explore
             </button>
-          </a>
+          </Link>
         </div>
       </div>
       <div>

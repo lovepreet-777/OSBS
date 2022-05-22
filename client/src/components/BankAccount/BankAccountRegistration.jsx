@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function BankAccountRegistration() {
   const [data, setData] = React.useState({});
@@ -7,15 +10,40 @@ export default function BankAccountRegistration() {
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
-
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    try {
+      const url = "http://localhost:8080/api/Bankuser/create";
+      const res = await axios.post(url, data);
+
+      console.log(res?.data?.statusCode, res?.data?.message);
+
+      if (res?.data?.statusCode === 200) {
+        alert(res?.data?.message);
+        // navigate("/Bank/Login");
+      }
+
+      // console.log(res.message);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      )
+
+       {
+         console.log(error.response.data.message);
+        setError(error.response.data.message);
+      }
+    }
   };
 
   return (
     <div className="acc-registration_wrapper flex-center">
-      <form onSubmit={handleSubmit}>
+      <form >
         <div
           style={{
             display: "flex",
@@ -26,9 +54,9 @@ export default function BankAccountRegistration() {
           <div className="form-outline form-white mb-4">
             <input
               onChange={handleChange}
-              name="fname"
+              name="firstName"
               type="text"
-              id="fname"
+              id="firstName"
               className="form-control form-control-lg"
               autoComplete="off"
               placeholder="First Name"
@@ -37,9 +65,9 @@ export default function BankAccountRegistration() {
           <div className="form-outline form-white mb-4">
             <input
               onChange={handleChange}
-              name="lname"
+              name="lastName"
               type="text"
-              id="lname"
+              id="lastName"
               className="form-control form-control-lg"
               autoComplete="off"
               placeholder="Last Name"
@@ -70,9 +98,9 @@ export default function BankAccountRegistration() {
           <div className="form-outline form-white mb-4">
             <input
               onChange={handleChange}
-              name="address"
+              name="location"
               type="text"
-              id="address"
+              id="location"
               className="form-control form-control-lg"
               autoComplete="off"
               placeholder="Address"
@@ -100,7 +128,7 @@ export default function BankAccountRegistration() {
               placeholder="Confirm password"
             />
           </div>
-          <button className="btn btn-outline-light btn-lg px-5" type="submit">
+          <button onClick={(e) => handleSubmit(e)} className="btn btn-outline-light btn-lg px-5" type="submit">
             Register
           </button>
           <div>

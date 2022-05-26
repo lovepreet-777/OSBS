@@ -38,6 +38,30 @@ body {
 
 .navItems {
   display: flex;
+  
+}
+.navlogout{
+  padding: 4px 20px;
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+    background-color: #263747;
+    margin: 0px 13px;
+    border-radius: 7px;
+    border-color: black;
+    display: flex;
+}
+
+.navlogoutbutton{
+  padding: 6px 24px;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+  background-color: #384087;
+  margin: 0px 13px;
+  border-radius: 7px;
+  border-color: black;
+  display: flex;
 }
 
 .navLink {
@@ -303,5 +327,10 @@ footer {
 .acc-registration_wrapper{
   width: 100%;
   padding: 64px;
-  background-color: #20374c;
+  background-color: rgb(21 38 56);
 }
+
+/* .modal{
+  background-color: #263747;;
+
+} */

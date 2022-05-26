@@ -58,73 +58,74 @@ const Signup = () => {
                     <p className="text-white-50 mb-5">
                       Please enter your details!
                     </p>
-                    <div
-                      className="form-outline form-white mb-4"
-                      onSubmit={handleSubmit}
-                    >
-                      <input
-                        type="text"
-                        name="firstName"
-                        onChange={handleChange}
-                        value={data.firstName}
-                        required
-                        className="form-control form-control-lg"
-                        placeholder="First Name"
-                      />
-                    </div>
-                    <div className="form-outline form-white mb-4">
-                      <input
-                        type="text"
-                        name="lastName"
-                        onChange={handleChange}
-                        value={data.lastName}
-                        required
-                        className="form-control form-control-lg"
-                        placeholder="Last Name"
-                      />
-                    </div>
-                    <div className="form-outline form-white mb-4">
-                      <input
-                        type="email"
-                        name="email"
-                        id="typeEmailX"
-                        onChange={handleChange}
-                        value={data.email}
-                        required
-                        className="form-control form-control-lg"
-                        placeholder="Email"
-                      />
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                      <div className="form-outline form-white mb-4">
+                        <input
+                          type="text"
+                          name="firstName"
+                          onChange={handleChange}
+                          value={data.firstName}
+                          required
+                          className="form-control form-control-lg"
+                          placeholder="First Name"
+                        />
+                      </div>
+                      <div className="form-outline form-white mb-4">
+                        <input
+                          type="text"
+                          name="lastName"
+                          onChange={handleChange}
+                          value={data.lastName}
+                          required
+                          className="form-control form-control-lg"
+                          placeholder="Last Name"
+                        />
+                      </div>
+                      <div className="form-outline form-white mb-4">
+                        <input
+                          type="email"
+                          name="email"
+                          id="typeEmailX"
+                          onChange={handleChange}
+                          value={data.email}
+                          required
+                          className="form-control form-control-lg"
+                          placeholder="Email"
+                        />
+                      </div>
 
-                    <div className="form-outline form-white mb-4">
-                      <input
-                        type="password"
-                        id="typePasswordX"
-                        className="form-control form-control-lg"
-                        placeholder="Password"
-                      />
-                    </div>
-                    <div className="form-outline form-white mb-4">
-                      <input
-                        type="password"
-                        id="typePasswordX"
-                        name="password"
-                        onChange={handleChange}
-                        value={data.password}
-                        required
-                        className="form-control form-control-lg"
-                        placeholder="Confirm Password"
-                      />
-                    </div>
+                      <div className="form-outline form-white mb-4">
+                        <input
+                          type="password"
+                          id="typePasswordX"
+                          name="password"
+                          autoComplete="off"
+                          className="form-control form-control-lg"
+                          placeholder="Password"
+                          minLength={5}
+                        />
+                      </div>
+                      <div className="form-outline form-white mb-4">
+                        <input
+                          type="password"
+                          id="typePasswordX"
+                          name="password"
+                          onChange={handleChange}
+                          value={data.password}
+                          required
+                          className="form-control form-control-lg"
+                          placeholder="Confirm Password"
+                          minLength={5}
+                        />
+                      </div>
 
-                    <button
-                      className="btn btn-outline-light btn-lg px-5"
-                      type="submit"
-                      onClick={(e) => handleSubmit(e)}
-                    >
-                      Register
-                    </button>
-
+                      <button
+                        className="btn btn-outline-light btn-lg px-5"
+                        type="submit"
+                      >
+                        Register
+                      </button>
+                    </form>
                     <div className="d-flex justify-content-center text-center mt-4 pt-1">
                       <a href="#!" className="text-white">
                         <i className="fab fa-facebook-f fa-lg"></i>

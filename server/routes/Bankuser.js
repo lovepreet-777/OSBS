@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const { Bankuser, validate } = require("../models/Bankuser");
 const express = require("express");
 const app = express();
+const Joi = require("joi");
 
 const generateRandomAccNumber = () => {
   const randomNumbersTuple = [];
@@ -17,24 +18,34 @@ const generateRandomAccNumber = () => {
 
 router.post("/create", async (req, res) => {
   try {
+    // console.log("hsisi");
     let bankuser = new Bankuser({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      // dob: req.body.dob,
       location: req.body.location,
       phone: req.body.phone,
+      balance: 1000,
+      bankname: req.body.bankname,
     });
     var accountNumber = generateRandomAccNumber();
     bankuser.accountNumber = accountNumber;
-    console.log(bankuser);
+    //console.log(bankuser);
 
+    const bankusercheck = await Bankuser.findOne({
+      email: req.body.email,
+      bankname: req.body.bankname,
+    });
+    if (bankusercheck) {
+      return res.status(401).send({ message: "Email already exists." });
+    }
     await bankuser.save();
-
+    console.log(bankuser);
     res.status(200).send({
       statusCode: 200,
       message: "Account created Succesfully",
+      Account_Number: accountNumber,
     });
   } catch (err) {
     console.log(err);
@@ -42,27 +53,41 @@ router.post("/create", async (req, res) => {
   }
 });
 
-app.get("/Login", async (req, res) => {
+router.post("/login", async (req, res) => {
+  console.log("love");
   try {
-    const { error } = validate(req.body);
-    if (error)
-      return res.status(400).send({ message: error.details[0].message });
+    // const { error } = (req.body);
+    // if (error) {
+    //   return res.status(400).send({ message: error.details[0].message });
+    // }
 
-    const Bankuser = await Bankuser.findOne({
+    const bankuser = await Bankuser.findOne({
       accountNumber: req.body.accountNumber,
-    });
-    if (Bankuser)
+    }); //account no.
+
+    if (!bankuser) {
       return res
-        .status(409)
-        .send({ message: "Bankuser with account number already exits." });
+        .status(401)
+        .send({ message: "Invalid Account Number or Password" });
+    }
 
-    // const salt = await bcrypt.genSalt(Number(process.env.SALT));
-    // const hashPassword = await bcrypt.hash(req.body.password, salt);
-
-    // await new Bankuser({ ...req.body, password: hashPassword }).save();
-    // res.status(201).send({ message: "New Bankuser Created Successfully." });
-    return res.status(200).send(Bankuser);
+    const validPassword = req.body.password === bankuser.password;
+    // const validPassword = await bcrypt.compare(
+    //   req.body.password,
+    //   user.password
+    // );
+    if (!validPassword) {
+      return res.status(401).send({ message: "Invalid Email or Password" });
+    }
+    const token = bankuser.generateAuthToken();
+    console.log(token);
+    res.status(200).send({
+      data: token,
+      message: "logged in successfully",
+      Bankuser: bankuser,
+    });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
 });

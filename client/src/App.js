@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Bank from "./components/Bank";
 import Signup from "./components/Signup";
+import Mod from "./components/Mod";
 import BankAccountRegistration from "./components/BankAccount/BankAccountRegistration";
 import BankAccountLogin from "./components/BankAccount/BankAccountLogin";
 
@@ -58,7 +59,7 @@ const App = () => {
             }
           />
           <Route
-            path="/account/registration"
+            path="/account/registration/:bankname"
             element={
               <ProtectedRoute>
                 <BankAccountRegistration />
@@ -66,10 +67,18 @@ const App = () => {
             }
           />
           <Route
-            path="/account/login"
+            path="/account/login/:bankname"
             element={
               <ProtectedRoute>
                 <BankAccountLogin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Mod"
+            element={
+              <ProtectedRoute>
+                <Mod />
               </ProtectedRoute>
             }
           />

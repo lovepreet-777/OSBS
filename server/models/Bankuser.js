@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const passwordcomplexity = require("joi-password-complexity");
-const joi = require("joi");
+const passwordComplexity = require("joi-password-complexity");
+const Joi = require("joi");
 
 const BankuserSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
@@ -12,6 +12,8 @@ const BankuserSchema = new mongoose.Schema({
   location: { type: String, required: true },
   phone: { type: String, required: true },
   accountNumber: { type: String },
+  balance: { type: Number },
+  bankname: { type: String, required: true },
 });
 BankuserSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ _id: this._id }, process.env.JWT_KEY);
@@ -28,6 +30,8 @@ const validate = (data) => {
     password: passwordComplexity().required().label("Password"),
     location: { type: String, required: true },
     phone: { type: String, required: true },
+    balance: { type: Number, required: true },
+    bankname: { type: String, required: true },
   });
   return schema.validate(data);
 };

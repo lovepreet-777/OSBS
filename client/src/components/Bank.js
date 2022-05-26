@@ -15,7 +15,7 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">State Bank Of India</h5> */}
           </div>
-          <Link to="/account/login">
+          <Link to="/account/login/sbi">
             <button type="button" className="button">
               Explore
             </button>
@@ -30,7 +30,7 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">HDFC Bank</h5> */}
           </div>
-          <Link to="/account/login">
+          <Link to="/account/login/hdfc">
             <button type="button" className="button">
               Explore
             </button>
@@ -48,7 +48,7 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">Axis Bank</h5> */}
           </div>
-          <Link to="/account/login">
+          <Link to="/account/login/axisbank">
             <button type="button" className="button">
               Explore
             </button>
@@ -63,17 +63,12 @@ const Bank = () => {
           <div className="card-body">
             {/* <h5 className="card-title">Kotak Mahindra Bank</h5> */}
           </div>
-          <Link to="/account/login">
+          <Link to="/account/login/kotak">
             <button type="button" className="button">
               Explore
             </button>
           </Link>
         </div>
-      </div>
-      <div>
-        <button type="button" className="button2">
-          ADD NEW BANK
-        </button>
       </div>
     </div>
   );

@@ -24,10 +24,9 @@ export default function BankAccountLogin() {
       console.log(res);
       localStorage.setItem("token", res.data.data);
       // localStorage.setItem("user", res.data.user.firstName);
-      // navigate("/Bank", {
-      //   replace: true,
-      // }
-      // );
+      navigate("/BankAccount/BankDetails", {
+        replace: true,
+      });
     } catch (error) {
       if (
         error.response &&

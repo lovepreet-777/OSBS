@@ -14,6 +14,7 @@ import Signup from "./components/Signup";
 import Mod from "./components/Mod";
 import BankAccountRegistration from "./components/BankAccount/BankAccountRegistration";
 import BankAccountLogin from "./components/BankAccount/BankAccountLogin";
+import BankDetails from "./components/BankAccount/BankDetails";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -50,14 +51,15 @@ const App = () => {
           <Route path="/Signup" element={<Signup />} />
           <Route path="/" element={<Login />} />
           <Route path="/Login" element={<Login />} />
-          <Route
-            path="/account"
+          <Route path="/BankDetails" element={<BankDetails />} />
+          {/* <Route
+            path="/BankDetails"
             element={
               <ProtectedRoute>
-                <>TODO something....</>
+                <BankDetails />
               </ProtectedRoute>
             }
-          />
+          /> */}
           <Route
             path="/account/registration/:bankname"
             element={
@@ -71,14 +73,6 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <BankAccountLogin />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/Mod"
-            element={
-              <ProtectedRoute>
-                <Mod />
               </ProtectedRoute>
             }
           />

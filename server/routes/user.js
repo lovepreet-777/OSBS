@@ -12,6 +12,12 @@ router.post("/create", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+    const userexist = await User.findOne({ email: req.body.email });
+    if (userexist) {
+      return res.status(401).send({ message: "Email id already exists" });
+
+      alert(error.response.data.message);
+    }
     await user.save();
     res.status(200).send({
       statusCode: 200,
